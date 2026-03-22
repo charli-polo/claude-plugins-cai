@@ -1,7 +1,7 @@
 {
   "name": "charli-mcp",
-  "version": "1.0.0",
-  "description": "Serveur MCP personnel de Charli (outils SNCF, etc.)",
+  "version": "1.1.0",
+  "description": "Serveur MCP personnel de Charli (outils SNCF, etc.) — secrets via ~/.claude/plugin-env",
   "author": {
     "name": "Charli"
   }
