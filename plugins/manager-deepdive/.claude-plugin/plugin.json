@@ -1,6 +1,6 @@
 {
-  "name": "manager-deepdive",
-  "version": "1.1.0",
+  "name": "manager-deepdive-cai",
+  "version": "1.2.0",
   "description": "Deep dive analysis d'un projet pour managers techniques — architecture, logique métier, carte d'équipe, rythme de travail, et sortie Notion. Contexte Brevo.",
   "author": {
     "name": "Charli"
