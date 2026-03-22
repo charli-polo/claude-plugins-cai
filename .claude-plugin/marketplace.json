@@ -1,0 +1,19 @@
+{
+  "name": "charli-plugins",
+  "owner": {
+    "name": "Charli",
+    "email": "charli.idrac@brevo.com"
+  },
+  "metadata": {
+    "description": "Mes plugins perso pour Claude Code",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "test-plugin",
+      "source": "./plugins/test-plugin",
+      "description": "Plugin de test pour valider la structure du marketplace",
+      "version": "1.0.0"
+    }
+  ]
+}
