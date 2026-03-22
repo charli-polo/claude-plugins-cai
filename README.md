@@ -1,36 +1,115 @@
 # charli-plugins
 
-Marketplace personnelle de plugins Claude Code de Charli.
+Marketplace personnelle de plugins pour Claude Code et Claude Desktop.
 
-## Installation
+---
+
+## Architecture
 
 ```
+┌─────────────────────────────────────────────────────────────────┐
+│                        GitHub (public)                          │
+│              repo: charli-polo/claude-plugins-cai               │
+│                     (ce repo — la marketplace)                  │
+└───────────────────────┬─────────────────────────────────────────┘
+                        │  sync auto (autoUpdate)
+          ┌─────────────┴──────────────┐
+          │                            │
+          ▼                            ▼
+┌─────────────────┐          ┌──────────────────────┐
+│   Claude Code   │          │    Claude Desktop     │
+│       CLI       │          │       (Cowork)        │
+├─────────────────┤          ├──────────────────────┤
+│ settings.json   │          │  installé via l'app   │
+│                 │          │  (marketplace GitHub) │
+│ extraKnown      │          └──────────────────────┘
+│ Marketplaces:   │
+│  charli-plugins │
+│  (github repo)  │
+│                 │
+│ enabledPlugins: │
+│  charli-mcp     │
+│  sncf-calendar  │
+│  ...            │
+└─────────────────┘
+```
+
+### Chargement du MCP personnel
+
+Le MCP tourne sur un **Cloudflare Worker** (repo séparé) et expose des outils custom (SNCF, etc.).
+Il est chargé différemment selon le client :
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│              MCP perso (Cloudflare Worker)                       │
+│     https://mcp-personal-tools.capablanca.workers.dev/mcp        │
+└──────────┬──────────────────────────────────┬────────────────────┘
+           │                                  │
+           ▼                                  ▼
+┌──────────────────────┐          ┌───────────────────────────────┐
+│     Claude Code      │          │        Claude Desktop          │
+├──────────────────────┤          ├───────────────────────────────┤
+│ Plugin charli-mcp    │          │ claude_desktop_config.json     │
+│ (de la marketplace)  │          │ (config manuelle, token en     │
+│                      │          │  clair dans le fichier)        │
+│ → scripts/start.sh   │          │                                │
+│   lit token depuis   │          │ ⚠️  Ne pas installer le plugin  │
+│   ~/.claude/         │          │    charli-mcp dans Claude      │
+│   plugin-env         │          │    Desktop — config directe    │
+│                      │          │    uniquement                  │
+└──────────────────────┘          └───────────────────────────────┘
+```
+
+> **Pourquoi deux méthodes ?**
+> Le plugin utilise `${CLAUDE_PLUGIN_ROOT}` et lit `~/.claude/plugin-env` — des mécanismes que Claude Code gère mais pas Claude Desktop.
+> Claude Desktop charge le MCP directement via `npx mcp-remote` avec token et PATH explicites dans sa config.
+
+---
+
+## Installation de la marketplace
+
+**Claude Code :**
+```bash
 /plugin marketplace add charli-polo/claude-plugins-cai
 ```
 
+Déclaration résultante dans `settings.json` :
+```json
+"enabledPlugins": { "charli-mcp@charli-plugins": true },
+"extraKnownMarketplaces": {
+  "charli-plugins": {
+    "source": { "source": "github", "repo": "charli-polo/claude-plugins-cai" },
+    "autoUpdate": true
+  }
+}
+```
+
+**Claude Desktop :** installé via l'interface de l'app (marketplace GitHub publique).
+
+---
+
 ## Gestion des secrets
 
-Les plugins qui nécessitent des tokens utilisent un fichier local **`~/.claude/plugin-env`** — jamais versionné, valable dans Claude Code et Claude Desktop.
+Les plugins Claude Code utilisent **`~/.claude/plugin-env`** (jamais versionné) :
 
 ```bash
 # ~/.claude/plugin-env
 export CHARLI_MCP_TOKEN=<ton_token>
-export AUTRE_TOKEN=<autre_token>
 ```
 
-Sur une nouvelle machine, créer ce fichier suffit à tout configurer.
+Claude Desktop a son token directement dans `~/Library/Application Support/Claude/claude_desktop_config.json`.
 
 ---
 
 ## Plugins disponibles
 
-### `agenda`
-Vision hebdomadaire de l'agenda Google Calendar.
-- Affiche la semaine en cours (ou la suivante si week-end)
-- Commande : `/agenda:semaine`
+### `charli-mcp`
+Charge le MCP personnel (Cloudflare Worker) dans Claude Code.
+- Prérequis : `CHARLI_MCP_TOKEN` dans `~/.claude/plugin-env`
+- ⚠️ Claude Code uniquement — ne pas activer dans Claude Desktop
 
 ```
-/plugin install agenda@charli-plugins
+/plugin install charli-mcp@charli-plugins
 ```
 
 ---
@@ -48,14 +127,13 @@ Synchronise les trajets SNCF avec Google Calendar.
 
 ---
 
-### `charli-mcp`
-Serveur MCP personnel — expose des outils custom (SNCF, etc.).
-- Prérequis : `CHARLI_MCP_TOKEN` dans `~/.claude/plugin-env`
-- Dépendance de `sncf-calendar-sync`
-- Fonctionne dans Claude Code et Claude Desktop via un wrapper script
+### `agenda`
+Vision hebdomadaire de l'agenda Google Calendar.
+- Affiche la semaine en cours (ou la suivante si week-end)
+- Commande : `/agenda:semaine`
 
 ```
-/plugin install charli-mcp@charli-plugins
+/plugin install agenda@charli-plugins
 ```
 
 ---
@@ -68,10 +146,11 @@ Plugin de validation de la structure du marketplace.
 /plugin install test-plugin@charli-plugins
 ```
 
+---
 
 ## To do
-- renommer les plugins pour que je vois facilement qu'il viennent de ma market place
-- indique à la skill sncf de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
+- renommer les plugins pour que je vois facilement qu'ils viennent de ma marketplace
+- indiquer à la skill sncf de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
 - corriger la skill sncf pour noter les présences à paris
 - mieux gérer les changements de train
 - voir si je peux préréserver un pony

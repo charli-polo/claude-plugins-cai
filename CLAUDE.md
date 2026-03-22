@@ -1,7 +1,9 @@
 # Mon marketplace perso de plugins Claude Code
 
-Ce repo est un **marketplace personnel** de plugins pour Claude Code.
-Il contient des skills, commandes et agents réutilisables, versionnés sur GitHub et installables en une commande.
+Ce repo est un **marketplace personnel** de plugins pour Claude Code et Claude Desktop.
+Il contient des skills, commandes et agents réutilisables, versionnés sur GitHub (repo public) et installables en une commande.
+
+> Pour l'architecture complète (marketplace, MCP Cloudflare Worker, différences Claude Code / Claude Desktop), voir **README.md**.
 
 ---
 
@@ -157,13 +159,23 @@ Dans les hooks et configs MCP, utiliser ces variables (jamais de chemins absolus
 
 ## Accès depuis Cowork (Claude Desktop)
 
-Les plugins installés via Claude Code CLI sont stockés dans `~/.claude/plugins/` et **partagés avec Cowork**. Installer un plugin via le CLI le rend accessible dans les deux interfaces.
+Les plugins installés via Claude Code CLI sont stockés dans `~/.claude/plugins/` mais **ne sont pas partagés avec Claude Desktop**. Les deux systèmes sont indépendants :
+- Claude Code lit ses plugins depuis `~/.claude/plugins/` (géré par `settings.json`)
+- Claude Desktop a sa propre installation de marketplace (via l'app) et sa propre config MCP (`claude_desktop_config.json`)
 
 ---
 
-## Repo GitHub privé — authentification auto-update
+## MCP personnel — règle importante
 
-Pour que les mises à jour en arrière-plan fonctionnent (au démarrage de Claude Code) :
+Ce repo contient le plugin `charli-mcp` qui charge un MCP hébergé sur un **Cloudflare Worker** (repo séparé).
+**Ce plugin ne fonctionne que dans Claude Code CLI** — ne jamais l'activer dans Claude Desktop.
+Claude Desktop charge ce même MCP directement via `claude_desktop_config.json` (sans passer par le plugin).
+
+---
+
+## Repo GitHub public — authentification auto-update
+
+Ce repo est **public**. Pour que les mises à jour en arrière-plan fonctionnent (au démarrage de Claude Code) :
 
 ```bash
 export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
