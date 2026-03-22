@@ -10,10 +10,10 @@
   },
   "plugins": [
     {
-      "name": "sncf-calendar-sync",
-      "source": "./plugins/sncf-calendar-sync",
-      "description": "Synchronise les trajets SNCF avec Google Calendar (blocs porte-à-porte + alertes Slack)",
-      "version": "1.0.0"
+      "name": "assistant-personnel",
+      "source": "./plugins/assistant-personnel",
+      "description": "Assistant personnel de Charli — synchronisation SNCF/Google Calendar, alertes Slack",
+      "version": "1.1.0"
     },
     {
       "name": "charli-mcp",

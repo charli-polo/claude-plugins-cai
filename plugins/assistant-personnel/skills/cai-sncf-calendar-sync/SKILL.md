@@ -1,5 +1,5 @@
 ---
-name: sncf-calendar-sync
+name: cai-sncf-calendar-sync
 description: Synchronise les trajets SNCF avec le calendrier principal de Charli (blocs porte-à-porte)
 ---
 

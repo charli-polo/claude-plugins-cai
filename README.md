@@ -114,7 +114,7 @@ Charge le MCP personnel (Cloudflare Worker) dans Claude Code.
 
 ---
 
-### `sncf-calendar-sync`
+### `assistant-personnel`
 Synchronise les trajets SNCF avec Google Calendar.
 - Crée des blocs porte-à-porte (vélo, train, métro) pour chaque trajet
 - Détecte les conflits et envoie une alerte Slack
@@ -122,7 +122,7 @@ Synchronise les trajets SNCF avec Google Calendar.
 - Commande : `/sncf-calendar-sync:sync-sncf`
 
 ```
-/plugin install sncf-calendar-sync@charli-plugins
+/plugin install assistant-personnel@charli-plugins
 ```
 
 ---

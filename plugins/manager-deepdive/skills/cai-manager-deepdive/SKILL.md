@@ -1,5 +1,5 @@
 ---
-name: manager-deepdive
+name: cai-manager-deepdive
 description: Deep dive analysis of a project for technical managers — code architecture, business logic, team/org map, work rhythm, and Notion output. Tailored for Brevo. Invoke when a manager wants to understand a codebase, its team dynamics, and delivery patterns.
 ---
 
