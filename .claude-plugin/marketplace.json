@@ -25,7 +25,7 @@
       "name": "manager-deepdive",
       "source": "./plugins/manager-deepdive",
       "description": "Deep dive analysis d'un projet pour managers techniques — architecture, équipe, rythme, sortie Notion. Contexte Brevo.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }
