@@ -26,6 +26,12 @@
       "source": "./plugins/sncf-calendar-sync",
       "description": "Synchronise les trajets SNCF avec Google Calendar (blocs porte-à-porte + alertes Slack)",
       "version": "1.0.0"
+    },
+    {
+      "name": "charli-mcp",
+      "source": "./plugins/charli-mcp",
+      "description": "Serveur MCP personnel de Charli — requiert CHARLI_MCP_TOKEN dans l'environnement",
+      "version": "1.0.0"
     }
   ]
 }

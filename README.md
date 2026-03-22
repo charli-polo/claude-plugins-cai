@@ -36,6 +36,17 @@ Synchronise les trajets SNCF avec Google Calendar.
 
 ---
 
+### `charli-mcp`
+Serveur MCP personnel — expose des outils custom (SNCF, etc.).
+- Prérequis : `export CHARLI_MCP_TOKEN=<token>` dans `~/.zshrc`
+- Dépendance de `sncf-calendar-sync`
+
+```
+/plugin install charli-mcp@charli-plugins
+```
+
+---
+
 ### `test-plugin`
 Plugin de validation de la structure du marketplace.
 - Commande : `/test-plugin:hello`

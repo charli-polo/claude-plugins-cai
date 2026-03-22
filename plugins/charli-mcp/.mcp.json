@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "charli-mcp": {
+      "command": "/opt/homebrew/opt/node@24/bin/npx",
+      "args": [
+        "mcp-remote",
+        "https://mcp-personal-tools.capablanca.workers.dev/mcp",
+        "--header",
+        "Authorization: Bearer ${CHARLI_MCP_TOKEN}"
+      ],
+      "env": {
+        "PATH": "/opt/homebrew/opt/node@24/bin:/usr/local/bin:/usr/bin:/bin"
+      }
+    }
+  }
+}
