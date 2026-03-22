@@ -127,17 +127,6 @@ Synchronise les trajets SNCF avec Google Calendar.
 
 ---
 
-### `agenda`
-Vision hebdomadaire de l'agenda Google Calendar.
-- Affiche la semaine en cours (ou la suivante si week-end)
-- Commande : `/agenda:semaine`
-
-```
-/plugin install agenda@charli-plugins
-```
-
----
-
 ### `manager-deepdive`
 Deep dive analysis d'un projet pour managers techniques.
 - Analyse architecture, logique métier, carte d'équipe, rythme de livraison
@@ -147,16 +136,6 @@ Deep dive analysis d'un projet pour managers techniques.
 
 ```
 /plugin install manager-deepdive@charli-plugins
-```
-
----
-
-### `test-plugin`
-Plugin de validation de la structure du marketplace.
-- Commande : `/test-plugin:hello`
-
-```
-/plugin install test-plugin@charli-plugins
 ```
 
 ---
