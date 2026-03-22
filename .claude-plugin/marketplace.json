@@ -13,7 +13,7 @@
       "name": "assistant-personnel",
       "source": "./plugins/assistant-personnel",
       "description": "Assistant personnel de Charli — synchronisation SNCF/Google Calendar, alertes Slack",
-      "version": "1.1.0"
+      "version": "1.2.0"
     },
     {
       "name": "charli-mcp",

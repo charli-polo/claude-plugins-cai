@@ -1,6 +1,6 @@
 {
   "name": "assistant-personnel",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Assistant personnel de Charli — synchronisation SNCF/Google Calendar, alertes Slack",
   "author": {
     "name": "Charli"
