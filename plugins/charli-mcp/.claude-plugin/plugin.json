@@ -1,6 +1,6 @@
 {
-  "name": "charli-mcp-cai",
-  "version": "1.3.0",
+  "name": "charli-mcp",
+  "version": "1.4.0",
   "description": "Serveur MCP personnel de Charli (outils SNCF, etc.) — secrets via ~/.claude/plugin-env. À activer uniquement dans Claude Code CLI, pas dans Claude Desktop (configurer manuellement via claude_desktop_config.json).",
   "author": {
     "name": "Charli"

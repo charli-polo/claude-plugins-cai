@@ -16,10 +16,10 @@
       "version": "1.3.0"
     },
     {
-      "name": "charli-mcp-cai",
+      "name": "charli-mcp",
       "source": "./plugins/charli-mcp",
       "description": "Serveur MCP personnel de Charli — requiert CHARLI_MCP_TOKEN dans l'environnement",
-      "version": "1.3.0"
+      "version": "1.4.0"
     },
     {
       "name": "manager-deepdive-cai",
