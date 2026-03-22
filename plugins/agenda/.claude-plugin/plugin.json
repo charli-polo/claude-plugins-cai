@@ -1,0 +1,9 @@
+{
+  "name": "agenda",
+  "version": "1.0.0",
+  "description": "Vision hebdomadaire de l'agenda Google Calendar",
+  "author": {
+    "name": "Charli"
+  },
+  "repository": "https://github.com/charli-polo/claude-plugins-cai"
+}

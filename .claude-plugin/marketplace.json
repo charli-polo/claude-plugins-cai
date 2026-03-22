@@ -14,6 +14,12 @@
       "source": "./plugins/test-plugin",
       "description": "Plugin de test pour valider la structure du marketplace",
       "version": "1.0.0"
+    },
+    {
+      "name": "agenda",
+      "source": "./plugins/agenda",
+      "description": "Vision hebdomadaire de l'agenda Google Calendar",
+      "version": "1.0.0"
     }
   ]
 }
