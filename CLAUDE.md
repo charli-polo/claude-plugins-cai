@@ -131,12 +131,14 @@ claude --debug
 
 ## Versioning
 
-- Bump le champ `version` dans `plugin.json` (ou dans `marketplace.json`) **avant** chaque push qui change un plugin.
-- Si la version ne change pas, Claude Code ne détecte pas la mise à jour (cache).
-- Format : `MAJOR.MINOR.PATCH` (ex : `1.0.0` → `1.1.0` pour un ajout, `2.0.0` pour un breaking change).
+- Bump le champ `version` dans **`plugin.json` ET `marketplace.json`** avant chaque push qui change un plugin.
+- Si la version ne change pas, ni Claude Code ni Claude Desktop ne détectent la mise à jour (cache).
+- Format : `MAJOR.MINOR.PATCH` (ex : `1.0.0` → `1.0.1` pour un fix, `1.1.0` pour un ajout, `2.0.0` pour un breaking change).
 
 > Si la version est définie dans les deux fichiers, c'est `plugin.json` qui a la priorité.
-> Conseil : pour les plugins en chemin relatif dans ce repo, gérer la version uniquement dans `marketplace.json`.
+> Les deux doivent être synchronisés pour que la mise à jour soit détectée par les deux clients.
+
+⚠️ **Renommer un plugin casse l'autoUpdate** — les utilisateurs doivent désinstaller l'ancien nom et installer le nouveau manuellement.
 
 ---
 
@@ -186,7 +188,7 @@ export GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
 
 ## Checklist avant de pousser une nouvelle version
 
-- [ ] `plugin.json` ou `marketplace.json` : version bumpée
+- [ ] `plugin.json` **ET** `marketplace.json` : version bumpée (les deux, pas juste un)
 - [ ] `/plugin validate .` passe sans erreur
 - [ ] Testé en local avec `/plugin marketplace add ./`
 - [ ] Scripts shell : `chmod +x scripts/*.sh`
