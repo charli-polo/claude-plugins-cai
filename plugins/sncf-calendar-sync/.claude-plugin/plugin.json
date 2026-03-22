@@ -1,0 +1,9 @@
+{
+  "name": "sncf-calendar-sync",
+  "version": "1.0.0",
+  "description": "Synchronise les trajets SNCF avec Google Calendar (blocs porte-à-porte + alertes Slack)",
+  "author": {
+    "name": "Charli"
+  },
+  "repository": "https://github.com/charli-polo/claude-plugins-cai"
+}

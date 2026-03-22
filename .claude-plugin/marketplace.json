@@ -20,6 +20,12 @@
       "source": "./plugins/agenda",
       "description": "Vision hebdomadaire de l'agenda Google Calendar",
       "version": "1.0.0"
+    },
+    {
+      "name": "sncf-calendar-sync",
+      "source": "./plugins/sncf-calendar-sync",
+      "description": "Synchronise les trajets SNCF avec Google Calendar (blocs porte-à-porte + alertes Slack)",
+      "version": "1.0.0"
     }
   ]
 }
