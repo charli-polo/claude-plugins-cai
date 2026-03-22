@@ -138,6 +138,19 @@ Vision hebdomadaire de l'agenda Google Calendar.
 
 ---
 
+### `manager-deepdive`
+Deep dive analysis d'un projet pour managers techniques.
+- Analyse architecture, logique métier, carte d'équipe, rythme de livraison
+- Intègre Slack, Notion, et git pour une vue complète
+- Sortie structurée dans Notion (Claude Document Hub)
+- Contexte Brevo (organigramme, patterns Slack `tmp-*`, etc.)
+
+```
+/plugin install manager-deepdive@charli-plugins
+```
+
+---
+
 ### `test-plugin`
 Plugin de validation de la structure du marketplace.
 - Commande : `/test-plugin:hello`
