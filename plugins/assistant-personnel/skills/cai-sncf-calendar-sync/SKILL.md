@@ -97,11 +97,10 @@ Conflits :
 Trier tous les trajets par date. Pour chaque ALLER, trouver le RETOUR chronologiquement suivant. Ignorer un ALLER sans RETOUR correspondant dans la fenêtre (impossible de déterminer la fin du séjour).
 
 **Événement à créer pour chaque paire ALLER/RETOUR :**
-- Titre : `📍 Paris`
-- Type : all-day event (pas d'heure, juste des dates)
-- Du jour de l'ALLER au jour du RETOUR inclus (en Google Calendar : `start = date(ALLER.train.start)`, `end = date(RETOUR.train.start) + 1 jour`)
+- Type : Working Location (`eventType: "workingLocation"`)
+- `workingLocationProperties: { type: "customLocation", customLocation: { label: "Paris" } }`
+- All-day, du jour de l'ALLER au jour du RETOUR inclus (`start = date(ALLER.train.start)`, `end = date(RETOUR.train.start) + 1 jour`)
 - Calendar : `charli.idrac@brevo.com`
-- Status : `free` (informatif, ne bloque pas l'agenda)
 - `reminders: []`
 - Description contenant le tag : `[SNCF-SYNC:<ALLER_UID>:presence]`
 
