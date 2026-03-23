@@ -112,7 +112,7 @@ Parcourir les trains dans l'ordre pour calculer les plages de présence :
 Pour chaque jour ouvré (lundi–vendredi) dans les 90 prochains jours :
 
 1. Appeler `gcal_list_events` sur la journée (calendrier `charli.idrac@brevo.com`)
-2. Chercher un événement dont le titre est `"Working from Paris"` ou `"Working from home (Bordeaux)"` (all-day)
+2. Chercher un événement `workingLocation` (all-day) dont le titre est `"Paris Salneuve (Office)"` (Paris) ou `"Working from home (Bordeaux)"` (Bordeaux)
 3. **Bon lieu déjà présent** → ne rien faire
 4. **Mauvais lieu présent** → supprimer avec `gcal_delete_event`, puis appeler `set_working_location`
 5. **Aucun événement Working Location** → appeler `set_working_location`
@@ -124,6 +124,8 @@ set_working_location(
   location    = "paris" | "bordeaux"
 )
 ```
+
+> **Titre Paris :** `set_working_location` crée l'événement avec le titre `"Working from Paris"`. Immédiatement après, renommer avec `gcal_update_event(summary: "Paris Salneuve (Office)")` pour correspondre au titre attendu.
 
 > **Pourquoi `set_working_location` et pas `gcal_create_event` :** le MCP Google Calendar standard ignore silencieusement `eventType: "workingLocation"` — les événements sont créés en type `default` et n'apparaissent pas comme badge Working Location dans l'UI. `set_working_location` appelle l'API Google Calendar v3 directement depuis le Worker avec le bon payload.
 
