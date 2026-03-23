@@ -107,27 +107,30 @@ Parcourir les trains dans l'ordre pour calculer les plages de présence :
   - `train.start < 12:00` → ce jour = Bordeaux ; état passe à Bordeaux ce jour
 - **Autres jours** : = état courant (Paris ou Bordeaux)
 
-**Format des événements :**
-- Type : `eventType: "workingLocation"`
-- Paris : `workingLocationProperties: { type: "customLocation", customLocation: { label: "Paris" } }`
-- Bordeaux : `workingLocationProperties: { type: "homeOffice" }`
-- All-day ; regrouper les jours consécutifs de même lieu en une seule plage (`start = premier jour`, `end = dernier jour + 1`)
-- Calendar : `charli.idrac@brevo.com`
-- `reminders: []`
-- Description : `[SNCF-SYNC:presence:<start_date>]` (ex. `[SNCF-SYNC:presence:2026-03-23]`)
+**Créer ou mettre à jour les événements :**
 
-**Idempotence :**
-Scanner `charli.idrac@brevo.com` sur 90 jours pour les événements contenant `[SNCF-SYNC:presence:`.
-- Absent → créer
-- Présent, dates et lieu identiques → ne rien faire
-- Présent, dates ou lieu changés → mettre à jour
-- Plus justifié (train modifié) → supprimer
+Pour chaque jour ouvré (lundi–vendredi) dans les 90 prochains jours :
+
+1. Appeler `gcal_list_events` sur la journée (calendrier `charli.idrac@brevo.com`)
+2. Chercher un événement dont le titre est `"Working from Paris"` ou `"Working from home (Bordeaux)"` (all-day)
+3. **Bon lieu déjà présent** → ne rien faire
+4. **Mauvais lieu présent** → supprimer avec `gcal_delete_event`, puis appeler `set_working_location`
+5. **Aucun événement Working Location** → appeler `set_working_location`
+
+```
+set_working_location(
+  calendar_id = "charli.idrac@brevo.com",
+  date        = "YYYY-MM-DD",
+  location    = "paris" | "bordeaux"
+)
+```
+
+> **Pourquoi `set_working_location` et pas `gcal_create_event` :** le MCP Google Calendar standard ignore silencieusement `eventType: "workingLocation"` — les événements sont créés en type `default` et n'apparaissent pas comme badge Working Location dans l'UI. `set_working_location` appelle l'API Google Calendar v3 directement depuis le Worker avec le bon payload.
 
 ---
 
 ## Règles importantes
 
 - Ne jamais traiter les trains passés
-- Le tag `[SNCF-SYNC:UID:TYPE]` garantit l'idempotence — ne jamais créer de doublons
 - Calendrier cible : `charli.idrac@brevo.com` (calendrier principal, pas besoin de gcal_list_calendars)
 - Ne jamais utiliser les outils Notion — sources autorisées : charli-mcp, Google Calendar, Slack uniquement
