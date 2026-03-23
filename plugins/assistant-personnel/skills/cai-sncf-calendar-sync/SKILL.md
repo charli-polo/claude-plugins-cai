@@ -112,7 +112,7 @@ Parcourir les trains dans l'ordre pour calculer les plages de présence :
 Pour chaque jour ouvré (lundi–vendredi) dans les 90 prochains jours :
 
 1. Appeler `gcal_list_events` sur la journée (calendrier `charli.idrac@brevo.com`)
-2. Chercher un événement `workingLocation` (all-day) dont le titre est `"Paris Salneuve (Office)"` (Paris) ou `"Working from home (Bordeaux)"` (Bordeaux)
+2. Chercher un événement Working Location (all-day) dont le titre est `"Paris Salneuve (Office)"` ou `"Bordeaux (Télétravail)"`
 3. **Bon lieu déjà présent** → ne rien faire
 4. **Mauvais lieu présent** → supprimer avec `gcal_delete_event`, puis appeler `set_working_location`
 5. **Aucun événement Working Location** → appeler `set_working_location`
@@ -122,7 +122,7 @@ set_working_location(
   calendar_id = "charli.idrac@brevo.com",
   date        = "YYYY-MM-DD",
   location    = "paris" | "bordeaux",
-  label       = "Paris Salneuve (Office)" | "Working from home (Bordeaux)"
+  label       = "Paris Salneuve (Office)" | "Bordeaux (Télétravail)"
 )
 ```
 
