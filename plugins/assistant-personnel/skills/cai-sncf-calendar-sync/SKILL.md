@@ -91,25 +91,37 @@ Conflits :
 
 ---
 
-## Étape 7 — Marquer les présences à Paris
+## Étape 7 — Marquer les présences (Paris / Bordeaux)
 
-**Appairage des trajets :**
-Trier tous les trajets par date. Pour chaque ALLER, trouver le RETOUR chronologiquement suivant. Ignorer un ALLER sans RETOUR correspondant dans la fenêtre (impossible de déterminer la fin du séjour).
+Chaque jour ouvré (lundi–vendredi) doit avoir un événement Working Location : Paris ou Bordeaux.
 
-**Événement à créer pour chaque paire ALLER/RETOUR :**
-- Type : Working Location (`eventType: "workingLocation"`)
-- `workingLocationProperties: { type: "customLocation", customLocation: { label: "Paris" } }`
-- All-day, du jour de l'ALLER au jour du RETOUR inclus (`start = date(ALLER.train.start)`, `end = date(RETOUR.train.start) + 1 jour`)
+**Construction de l'état courant :**
+Trier tous les trains à venir par date, puis déterminer l'état initial avant le premier train :
+- Si le premier train est un **RETOUR** → état initial = **Paris** (elle était déjà à Paris)
+- Si le premier train est un **ALLER** → état initial = **Bordeaux**
+
+Parcourir les trains dans l'ordre pour calculer les plages de présence :
+- **Jour d'un ALLER** : ce jour = Paris ; état passe à Paris
+- **Jour d'un RETOUR** :
+  - `train.start ≥ 12:00` → ce jour = Paris (plus d'une demi-journée sur place) ; état passe à Bordeaux le lendemain
+  - `train.start < 12:00` → ce jour = Bordeaux ; état passe à Bordeaux ce jour
+- **Autres jours** : = état courant (Paris ou Bordeaux)
+
+**Format des événements :**
+- Type : `eventType: "workingLocation"`
+- Paris : `workingLocationProperties: { type: "customLocation", customLocation: { label: "Paris" } }`
+- Bordeaux : `workingLocationProperties: { type: "homeOffice" }`
+- All-day ; regrouper les jours consécutifs de même lieu en une seule plage (`start = premier jour`, `end = dernier jour + 1`)
 - Calendar : `charli.idrac@brevo.com`
 - `reminders: []`
-- Description contenant le tag : `[SNCF-SYNC:<ALLER_UID>:presence]`
+- Description : `[SNCF-SYNC:presence:<start_date>]` (ex. `[SNCF-SYNC:presence:2026-03-23]`)
 
 **Idempotence :**
-Chercher les événements all-day contenant `[SNCF-SYNC:<ALLER_UID>:presence]` sur la période.
+Scanner `charli.idrac@brevo.com` sur 90 jours pour les événements contenant `[SNCF-SYNC:presence:`.
 - Absent → créer
-- Présent, dates identiques → ne rien faire
-- Présent, dates changées → mettre à jour
-- L'ALLER a disparu du calendrier SNCF → supprimer l'événement de présence
+- Présent, dates et lieu identiques → ne rien faire
+- Présent, dates ou lieu changés → mettre à jour
+- Plus justifié (train modifié) → supprimer
 
 ---
 
