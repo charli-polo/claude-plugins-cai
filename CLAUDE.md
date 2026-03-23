@@ -175,6 +175,21 @@ Claude Desktop charge ce même MCP directement via `claude_desktop_config.json` 
 
 ---
 
+## charli-mcp — tools disponibles
+
+Le MCP `charli-mcp` est un Cloudflare Worker (repo : [mcp-personal-tools](https://github.com/charli-polo/mcp-personal-tools)).
+Il expose les tools suivants, utilisables depuis Claude Code et Claude Desktop :
+
+| Tool | Paramètres | Description |
+|------|-----------|-------------|
+| `get_sncf_events` | `days_ahead` (optionnel, défaut 30) | Réservations SNCF à venir depuis l'iCal personnel |
+| `get_train_schedules` | `date`, `direction`, `after_time`, `max_results` | Trains TGV/OUIGO disponibles Paris ↔ Bordeaux pour une date |
+| `set_working_location` | `calendar_id`, `date` (YYYY-MM-DD), `location` ("paris" \| "bordeaux") | Crée un événement Working Location natif dans Google Calendar via l'API v3 directement |
+
+> **Pourquoi `set_working_location` existe :** le MCP Google Calendar standard (claude.ai) ignore silencieusement `eventType: "workingLocation"` — les événements sont créés en type `default`. Ce tool contourne cette limitation en appelant l'API Google Calendar v3 directement depuis le Worker, avec les credentials stockés dans les secrets Wrangler (pas de token à passer en paramètre).
+
+---
+
 ## Repo GitHub public — authentification auto-update
 
 Ce repo est **public**. Pour que les mises à jour en arrière-plan fonctionnent (au démarrage de Claude Code) :
