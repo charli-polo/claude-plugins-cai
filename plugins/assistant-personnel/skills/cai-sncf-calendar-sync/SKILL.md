@@ -121,11 +121,10 @@ Pour chaque jour ouvré (lundi–vendredi) dans les 90 prochains jours :
 set_working_location(
   calendar_id = "charli.idrac@brevo.com",
   date        = "YYYY-MM-DD",
-  location    = "paris" | "bordeaux"
+  location    = "paris" | "bordeaux",
+  label       = "Paris Salneuve (Office)" | "Working from home (Bordeaux)"
 )
 ```
-
-> **Titre Paris :** `set_working_location` crée l'événement avec le titre `"Working from Paris"`. Immédiatement après, renommer avec `gcal_update_event(summary: "Paris Salneuve (Office)")` pour correspondre au titre attendu.
 
 > **Pourquoi `set_working_location` et pas `gcal_create_event` :** le MCP Google Calendar standard ignore silencieusement `eventType: "workingLocation"` — les événements sont créés en type `default` et n'apparaissent pas comme badge Working Location dans l'UI. `set_working_location` appelle l'API Google Calendar v3 directement depuis le Worker avec le bon payload.
 
