@@ -53,7 +53,9 @@ Pour chaque trajet, appeler `gcal_list_events` sur la plage `[train.start - 2h, 
 
 ## Étape 5 — Créer, mettre à jour ou supprimer
 
-- **Bloc absent** → créer avec `gcal_create_event` (calendar_id: `charli.idrac@brevo.com`, status: busy, reminders: [], description contenant le tag)
+- **Bloc absent** → créer avec `gcal_create_event` (calendar_id: `charli.idrac@brevo.com`, status: busy, description contenant le tag)
+  - Blocs `pre` et `train` : reminders par défaut (ne pas surcharger)
+  - Bloc `post` : `reminders: []` — inutile d'être rappelé à l'arrivée du train
 - **Bloc existant, horaires changés** → mettre à jour avec `gcal_update_event`
 - **Bloc existant, horaires identiques** → ne rien faire
 - **Train disparu du calendrier SNCF** → supprimer ses 3 blocs avec `gcal_delete_event`
