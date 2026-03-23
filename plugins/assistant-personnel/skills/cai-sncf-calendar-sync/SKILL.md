@@ -66,6 +66,7 @@ Pour détecter les trains disparus : lister les événements `charli.idrac@brevo
 
 Pour chaque trajet, lister les événements de `charli.idrac@brevo.com` sur la fenêtre `[pré.start, post.end]`.
 Exclure les événements dont la description contient `[SNCF-SYNC:`.
+Exclure également les événements dont `self.responseStatus` est `"tentative"` (réponse "maybe") — ces événements n'engagent pas et ne constituent pas un conflit.
 Si des événements restants chevauchent l'un des 3 blocs :
 
 1. Chercher l'utilisatrice Charli Idrac (charli.idrac@brevo.com) avec `slack_search_users`

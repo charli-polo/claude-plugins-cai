@@ -141,9 +141,15 @@ Deep dive analysis d'un projet pour managers techniques.
 ---
 
 ## To do
-- renommer les plugins pour que je vois facilement qu'ils viennent de ma marketplace
-- indiquer à la skill sncf de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
-- corriger la skill sncf pour noter les présences à paris
-- mieux gérer les changements de train
+- indiquer à la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
+- améliorer la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) pour noter les présences à paris dans mon agneda google en fonction des aller retour
+- Pour les évènements après le trajet en train, ne pas planifier de rappel 10 mn avant.
+- Proposer une fonctionalité qui gère les changements de train le jour même
+   - l'abonnement SNCF que j'ai permet de changer de train le jour J pour n'importe quel autre train, mais ce changement ne peut être effectué que le jour du départ
+   - identifier le ou les trains souhaités et bloquer les plages dans l'agenda
+   - poser un rapple le jour J pour changer le train
+
+
+## Idées
 - voir si je peux préréserver un pony
-- bug slack (pas de lien)
+
