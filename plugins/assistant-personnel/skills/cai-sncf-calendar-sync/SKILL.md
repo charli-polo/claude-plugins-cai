@@ -29,12 +29,12 @@ Le champ `summary` a le format : `"Gare départ > Gare arrivée - CODE - Type"`
 
 **ALLER (Bordeaux → Paris) :**
 - Pré : `🚲 Vélo → Gare de Bordeaux` — de `train.start - 40min` à `train.start`
-- Train : summary SNCF tel quel — de `train.start` à `train.end`
+- Train : `🚄 Bordeaux > Paris (Aller)` — de `train.start` à `train.end`
 - Post : `🚇 Gare Montparnasse → Bureau Brevo` — de `train.end` à `train.end + 35min`
 
 **RETOUR (Paris → Bordeaux) :**
 - Pré : `🚇 Bureau Brevo → Gare Montparnasse` — de `train.start - 45min` à `train.start`
-- Train : summary SNCF tel quel — de `train.start` à `train.end`
+- Train : `🚄 Paris > Bordeaux (Retour)` — de `train.start` à `train.end`
 - Post : `🏠 Gare de Bordeaux → Domicile` — de `train.end` à `train.end + 25min`
 
 ---
@@ -53,7 +53,7 @@ Pour chaque trajet, appeler `gcal_list_events` sur la plage `[train.start - 2h, 
 
 ## Étape 5 — Créer, mettre à jour ou supprimer
 
-- **Bloc absent** → créer avec `gcal_create_event` (calendar_id: `charli.idrac@brevo.com`, status: busy, description contenant le tag)
+- **Bloc absent** → créer avec `gcal_create_event` (calendar_id: `charli.idrac@brevo.com`, status: busy, reminders: [], description contenant le tag)
 - **Bloc existant, horaires changés** → mettre à jour avec `gcal_update_event`
 - **Bloc existant, horaires identiques** → ne rien faire
 - **Train disparu du calendrier SNCF** → supprimer ses 3 blocs avec `gcal_delete_event`
@@ -94,3 +94,4 @@ Conflits :
 - Ne jamais traiter les trains passés
 - Le tag `[SNCF-SYNC:UID:TYPE]` garantit l'idempotence — ne jamais créer de doublons
 - Calendrier cible : `charli.idrac@brevo.com` (calendrier principal, pas besoin de gcal_list_calendars)
+- Ne jamais utiliser les outils Notion — sources autorisées : charli-mcp, Google Calendar, Slack uniquement
