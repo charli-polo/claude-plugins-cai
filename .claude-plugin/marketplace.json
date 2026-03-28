@@ -26,6 +26,12 @@
       "source": "./plugins/manager-deepdive",
       "description": "Deep dive analysis d'un projet pour managers techniques — architecture, équipe, rythme, sortie Notion. Contexte Brevo.",
       "version": "1.2.0"
+    },
+    {
+      "name": "notion-note-cai",
+      "source": "./plugins/notion-note",
+      "description": "Envoie une note ou un document dans le Claude Document Hub Notion de Brevo.",
+      "version": "1.0.0"
     }
   ]
 }

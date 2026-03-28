@@ -1,0 +1,8 @@
+{
+  "name": "notion-note-cai",
+  "version": "1.0.0",
+  "description": "Envoie une note ou un document dans le Claude Document Hub Notion de Brevo.",
+  "author": {
+    "name": "Charli"
+  }
+}
