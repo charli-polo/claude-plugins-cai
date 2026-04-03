@@ -1,6 +1,6 @@
 {
   "name": "clipboard-utils-cai",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Clipboard utilities — /c copies all commands from the last Claude message to clipboard history in order",
   "author": {
     "name": "Charli"
