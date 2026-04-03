@@ -32,6 +32,12 @@
       "source": "./plugins/notion-note",
       "description": "Envoie une note ou un document dans le Claude Document Hub Notion de Brevo.",
       "version": "1.0.0"
+    },
+    {
+      "name": "clipboard-utils-cai",
+      "source": "./plugins/clipboard-utils-cai",
+      "description": "Clipboard utilities — /c copies all commands from the last Claude message to clipboard history in order",
+      "version": "1.0.0"
     }
   ]
 }
