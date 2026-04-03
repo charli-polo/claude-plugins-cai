@@ -37,7 +37,7 @@
       "name": "clipboard-utils-cai",
       "source": "./plugins/clipboard-utils-cai",
       "description": "Clipboard utilities — /cc copies all commands from the last Claude message to clipboard history in order",
-      "version": "1.0.3"
+      "version": "1.1.0"
     }
   ]
 }
