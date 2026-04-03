@@ -140,6 +140,21 @@ Deep dive analysis d'un projet pour managers techniques.
 
 ---
 
+### `clipboard-utils-cai`
+Copie les commandes du dernier message Claude dans l'historique du presse-papiers.
+- Commande : `/cclip`
+- Lit le fichier JSONL de session directement — aucune inférence LLM, < 1s
+- Extrait les blocs de code et les slash commands (ex: `/gsd:execute-phase 3.2`)
+- Ignore les annotations advisories (lignes avec ` → `)
+- Copie en ordre inverse : le premier command est en haut de l'historique (Raycast, Maccy…)
+- Chaque bloc de code séparé = une entrée clipboard séparée
+
+```
+/plugin install clipboard-utils-cai@charli-plugins
+```
+
+---
+
 ## To do
 - indiquer à la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
 - améliorer la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) pour noter les présences à paris dans mon agneda google en fonction des aller retour
