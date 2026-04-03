@@ -5,5 +5,5 @@ description: Copy all runnable commands from the last Claude message to clipboar
 Run this and show the output:
 
 ```bash
-node ${CLAUDE_PLUGIN_ROOT}/scripts/cc.js
+node $(ls -d ~/.claude/plugins/cache/charli-plugins/clipboard-utils-cai/*/scripts/cc.js 2>/dev/null | sort -V | tail -1)
 ```
