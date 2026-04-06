@@ -155,6 +155,20 @@ Copie les commandes du dernier message Claude dans l'historique du presse-papier
 
 ---
 
+### `dify-manager`
+Manage a self-hosted Dify instance via API and Chrome DevTools MCP.
+- 5 skills: `dify:manage`, `dify:export`, `dify:import`, `dify:add-model`, `dify:edit`
+- Auto-creates `.env` in working directory on first use (API URL, credentials, Railway project)
+- Export/import DSL workflows, add OpenAI-compatible LLM providers, edit workflows
+- Documents Railway-specific issues (cookie PSL, plugin-daemon `--offline` bug)
+- Chrome DevTools MCP integration for form-based model setup
+
+```
+/plugin install dify-manager@charli-plugins
+```
+
+---
+
 ## To do
 - indiquer à la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) de ne pas regarder dans notion, seulement mon mcp et celui de l'agenda, et à la limite d'autres sources (gmail, slack) si besoin mais pas notion
 - améliorer la skill [sncf](plugins/assistant-personnel/skills/cai-sncf-calendar-sync) pour noter les présences à paris dans mon agneda google en fonction des aller retour

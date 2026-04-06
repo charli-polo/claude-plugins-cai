@@ -1,0 +1,8 @@
+{
+  "name": "dify-manager",
+  "version": "1.0.0",
+  "description": "Manage a self-hosted Dify instance — export/import DSL workflows, add LLM providers, edit workflows, and administer the platform via API and Chrome DevTools.",
+  "author": {
+    "name": "Charli"
+  }
+}
