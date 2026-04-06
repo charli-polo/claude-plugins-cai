@@ -38,6 +38,12 @@
       "source": "./plugins/clipboard-utils-cai",
       "description": "Clipboard utilities — /cc copies all commands from the last Claude message to clipboard history in order",
       "version": "1.1.2"
+    },
+    {
+      "name": "dify-manager",
+      "source": "./plugins/dify-manager",
+      "description": "Manage a self-hosted Dify instance — export/import DSL workflows, add LLM providers, edit workflows via API and Chrome DevTools.",
+      "version": "1.0.0"
     }
   ]
 }
